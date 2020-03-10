@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Prometheus;
 
 namespace prometheus_example
 {
@@ -35,6 +36,8 @@ namespace prometheus_example
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMetricServer();
 
             app.UseHttpsRedirection();
 
