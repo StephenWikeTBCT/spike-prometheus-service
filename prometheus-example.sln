@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prometheus-example", "prome
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prometheus-example-host", "prometheus-example-host\prometheus-example-host.csproj", "{EE182FF9-8413-4AFD-AFA3-04843177091F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prometheus-service-extensions", "prometheus-service-extensions\prometheus-service-extensions.csproj", "{F3DC17FC-F5B8-4F02-86D6-12E6754D7D84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EE182FF9-8413-4AFD-AFA3-04843177091F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE182FF9-8413-4AFD-AFA3-04843177091F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE182FF9-8413-4AFD-AFA3-04843177091F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3DC17FC-F5B8-4F02-86D6-12E6754D7D84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DC17FC-F5B8-4F02-86D6-12E6754D7D84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DC17FC-F5B8-4F02-86D6-12E6754D7D84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DC17FC-F5B8-4F02-86D6-12E6754D7D84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
