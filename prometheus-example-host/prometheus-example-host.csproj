@@ -6,4 +6,8 @@
     <RootNamespace>prometheus_example_host</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="prometheus-net" Version="3.5.0" />
+  </ItemGroup>
+
 </Project>

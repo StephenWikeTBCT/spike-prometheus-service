@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Prometheus;
+using prometheus_service_extensions;
 
 namespace prometheus_example.Controllers
 {
@@ -18,32 +19,33 @@ namespace prometheus_example.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private static readonly Counter ProcessedJobCount = Metrics.CreateCounter("weather_jobs_processed_total", "Number of processed jobs.");
-
-
-        //private IMetricServer metricServer = new MetricServer(hostname: "localhost", port: 1234);
-        //private static readonly Counter TickTock = Metrics.CreateCounter("weather_forecast_controller_counter", "Counting ticks...");
         private readonly ILogger<WeatherForecastController> _logger;
+        private IBctMetricService _metrics;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(IBctMetricService metrics, ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-            //metricServer.Start();
+            _metrics = metrics;
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            ProcessedJobCount.Inc();
-
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            IEnumerable<WeatherForecast> forecasts = null;
+            _metrics.GetCount();
+            _metrics.GetDuration(() =>
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+                var rng = new Random();
+                forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+                {
+                    Date = DateTime.Now.AddDays(index),
+                    TemperatureC = rng.Next(-20, 55),
+                    Summary = Summaries[rng.Next(Summaries.Length)]
+                })
+                .ToArray();
+            });
+
+            return forecasts;
         }
     }
 }

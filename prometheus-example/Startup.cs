@@ -37,8 +37,6 @@ namespace prometheus_example
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMetricServer();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

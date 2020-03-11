@@ -7,7 +7,7 @@ namespace prometheus_service_extensions
     {
         public static IServiceCollection AddBCTMetrics(this IServiceCollection services)
         {
-            services.AddSingleton(_ => new BCTPrometheusService());
+            services.AddSingleton<IBctMetricService>(_ => new BCTPrometheusService());
             return services;
         }
     }
