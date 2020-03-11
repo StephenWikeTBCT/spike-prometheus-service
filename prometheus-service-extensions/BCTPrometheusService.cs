@@ -1,5 +1,6 @@
 ﻿using Prometheus;
 using System;
+using System.Net;
 
 namespace prometheus_service_extensions
 {

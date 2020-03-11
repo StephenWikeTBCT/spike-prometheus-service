@@ -8,14 +8,14 @@ EXPOSE 1234
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["prometheus-example/prometheus-example.csproj", "prometheus-example/"]
-RUN dotnet restore "prometheus-example/prometheus-example.csproj"
+COPY ["prometheus-example-host/prometheus-example-host.csproj", "prometheus-example-host/"]
+RUN dotnet restore "prometheus-example-host/prometheus-example-host.csproj"
 COPY . .
-WORKDIR "/src/prometheus-example"
-RUN dotnet build "prometheus-example.csproj" -c Release -o /app/build
+WORKDIR "/src/prometheus-example-host"
+RUN dotnet build "prometheus-example-host.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "prometheus-example.csproj" -c Release -o /app/publish
+RUN dotnet publish "prometheus-example-host.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
@@ -23,4 +23,4 @@ COPY --from=publish /app/publish .
 USER root
 RUN hostname localhost
 RUN hostname
-ENTRYPOINT ["dotnet", "prometheus-example.dll"]
+ENTRYPOINT ["dotnet", "prometheus-example-host.dll"]
