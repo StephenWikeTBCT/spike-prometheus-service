@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-example-host
+  labels:
+    app: prometheus-example-host
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-example-host
+  template:
+    metadata:
+      labels:
+        app: prometheus-example-host
+    spec:
+      containers:
+      - name: prometheus-example-host
+        image: stephenwike/prometheus-example-host:latest
+        imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-example-host
+  labels:
+    app: prometheus-example-host
+  annotations:
+    prometheus.io/scrape: "true"
+spec:
+  type: NodePort
+  ports:
+  - port: 1234
+    targetPort: 1234
+    nodePort: 30111
+    name: http
+  selector:
+     app: prometheus-example-host

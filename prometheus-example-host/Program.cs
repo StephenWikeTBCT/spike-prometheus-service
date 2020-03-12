@@ -24,7 +24,10 @@ namespace prometheus_example_host
             })
             .ConfigureServices(services =>
             {
-                services.AddBCTMetrics();
+                services.AddBCTMetrics(new BctMetricsConfiguration() 
+                {
+                    Host = "prometheus-example-host"
+                });
                 services.AddHostedService<DoSomething>();
             });
     }

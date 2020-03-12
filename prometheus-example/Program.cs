@@ -19,7 +19,10 @@ namespace prometheus_example
                 })
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddBCTMetrics();
+                    services.AddBCTMetrics(new BctMetricsConfiguration()
+                    {
+                        Host = "localhost"
+                    });
                 });
     }
 }

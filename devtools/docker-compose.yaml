@@ -6,11 +6,11 @@ services:
         container_name: prometheus-example-webapi
         ports:
             - "5001:80"
-            - "8080:1234"
-
+            - "9091:1234"
 
     prometheus-example-host:
         image: prometheus-example-host
         container_name: prometheus-example-host
         ports:
             - "9092:1234"
+            
